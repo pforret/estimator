@@ -24,15 +24,15 @@ class EstimatorTest extends TestCase
             "D" => 25,
         ];
         $est->set_averages($averages);
-        $partials=$averages;
+        $partials = $averages;
         unset($partials["D"]);
-        $evaluation=$est->evaluate_partials($partials,true);
-        $this->assertTrue($evaluation["count_fraction"]=== .75,"count_fraction is correct");
-        $this->assertTrue($evaluation["total_fraction"]=== .75,"total_fraction is correct");
+        $evaluation = $est->evaluate_partials($partials, true);
+        $this->assertTrue($evaluation["count_fraction"] === .75, "count_fraction is correct");
+        $this->assertTrue($evaluation["total_fraction"] === .75, "total_fraction is correct");
 
-        $partials["C"]=28;
-        $evaluation=$est->evaluate_partials($partials,true);
-        $this->assertEquals(3,$evaluation["deviation"],"standard deviation");
+        $partials["C"] = 28;
+        $evaluation = $est->evaluate_partials($partials, true);
+        $this->assertEquals(3, $evaluation["deviation"], "standard deviation");
     }
 
     public function test_from_partials()
