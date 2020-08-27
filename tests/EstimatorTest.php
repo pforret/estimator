@@ -24,7 +24,6 @@ class EstimatorTest extends TestCase
             "D" => 25,
         ];
         $est->set_averages($averages);
-<<<<<<< HEAD
         $partials=$averages;
         unset($partials["D"]);
         $evaluation=$est->evaluate_partials($partials,true);
@@ -34,12 +33,6 @@ class EstimatorTest extends TestCase
         $partials["C"]=28;
         $evaluation=$est->evaluate_partials($partials,true);
         $this->assertEquals(3,$evaluation["deviation"],"standard deviation");
-=======
-        unset($averages["D"]);
-        $evaluation = $est->evaluate_partials($averages);
-        $this->assertTrue($evaluation["count_fraction"] === .75, "count_fraction is correct");
-        $this->assertTrue($evaluation["total_fraction"] === .75, "total_fraction is correct");
->>>>>>> 26f81e2f298b916213c7f3b0dbc4a9916c13ee9c
     }
 
     public function test_from_partials()
