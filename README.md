@@ -28,8 +28,17 @@ composer require pforret/estimator
 ## Usage
 
 ``` php
-$obj = new Pforret\Estimator();
-echo $obj->echoPhrase('Hello, pforret!');
+use Pforret\Estimator\Estimator;
+$est = new Estimator();
+$est->set_averages($averages);
+
+// and then
+
+$estimated = $est->estimate_from_partials($partials);
+
+// or 
+
+$estimated = $est->estimate_from_total(100);
 ```
 
 ## Testing
