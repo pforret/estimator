@@ -17,7 +17,7 @@ class Estimator
         $this->total_averages = array_sum(array_values($this->averages));
     }
 
-    public function evaluate_partials(array $partials, bool $with_stats=false)
+    public function evaluate_partials(array $partials, bool $with_stats = false)
     {
         $total_found = 0;
         $total_partials = 0;
@@ -30,7 +30,7 @@ class Estimator
                 $count_found++;
             }
         }
-        $results= [
+        $results = [
             "count_found" => $count_found,
             "count_averages" => $this->count_averages,
             "count_fraction" => round($count_found / $this->count_averages, 3),
@@ -42,20 +42,21 @@ class Estimator
             "total_new" => $total_partials,
             "multiplier" => round($total_partials / $total_found, 3),
         ];
-        if($with_stats){
-            $deviation=0;
+        if ($with_stats) {
+            $deviation = 0;
             foreach ($partials as $label => $value) {
-                if(in_array($label,$this->labels)){
-                    $expected=$this->averages[$label]/$total_found*$total_partials;
-                    $difference=abs($expected-$value);
-                    $deviation+=$difference*$difference;
+                if (in_array($label, $this->labels)) {
+                    $expected = $this->averages[$label] / $total_found * $total_partials;
+                    $difference = abs($expected - $value);
+                    $deviation += $difference * $difference;
                 }
             }
-            $results["deviation"]=round($deviation/($count_found-1),3);
-            $results["average_history"]=round(array_sum(array_values($this->averages))/$this->count_averages,3);
-            $results["average_now"]=round($total_found/$count_found,3);
-            $results["average_partials"]=round(array_sum(array_values($partials))/count($partials),3);
+            $results["deviation"] = round($deviation / ($count_found - 1), 3);
+            $results["average_history"] = round(array_sum(array_values($this->averages)) / $this->count_averages, 3);
+            $results["average_now"] = round($total_found / $count_found, 3);
+            $results["average_partials"] = round(array_sum(array_values($partials)) / count($partials), 3);
         }
+
         return $results;
     }
 
