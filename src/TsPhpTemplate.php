@@ -1,7 +1,7 @@
 <?php
-// Author: author_name (author_username, author@email.com)
-namespace package_namespace;
+// Author: Peter Forret (pforret, peter@forret.com)
+namespace Pforret;
 
-class class_name
+class Estimator
 {
 }

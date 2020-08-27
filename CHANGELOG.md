@@ -1,7 +1,7 @@
 # Changelog
 
-All notable changes to `package_name` will be documented in this file
+All notable changes to `estimator` will be documented in this file
 
-## 1.0.0 - init_date by author@email.com
+## 1.0.0 - 2020-08-27 by peter@forret.com
 
 - initial release

@@ -1,17 +1,17 @@
 {
-    "name": "author_username/package_name",
+    "name": "pforret/estimator",
     "version": "1.1.1",
-    "description": "package_description",
+    "description": "This is my package Estimator",
     "keywords": [
-        "author_username",
-        "package_name"
+        "pforret",
+        "estimator"
     ],
-    "homepage": "https://github.com/author_username/package_name",
+    "homepage": "https://github.com/pforret/estimator",
     "license": "MIT",
     "authors": [
         {
-            "name": "author_name",
-            "email": "author@email.com",
+            "name": "Peter Forret",
+            "email": "peter@forret.com",
             "role": "Developer"
         }
     ],
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "package_namespace\\class_name\\": "src"
+            "Pforret\\Estimator\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "package_namespace\\class_name\\Tests\\": "tests"
+            "Pforret\\Estimator\\Tests\\": "tests"
         }
     },
     "scripts": {
