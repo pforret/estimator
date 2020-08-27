@@ -8,11 +8,11 @@ class Estimator
     {
     }
 
-    public function set_averages(array $averages){
-
+    public function set_averages(array $averages)
+    {
     }
 
-    public function estimate(array $partials,int $precision){
-
+    public function estimate(array $partials, int $precision)
+    {
     }
 }
