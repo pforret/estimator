@@ -10,9 +10,12 @@ Packagist:
 [![Packagist Version](https://img.shields.io/packagist/v/pforret/estimator.svg?style=flat-square)](https://packagist.org/packages/pforret/estimator)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/pforret/estimator.svg?style=flat-square)](https://packagist.org/packages/pforret/estimator)
 
-This is my package Estimator
+Package to help estimate stats based on partial data and historic averages.
 
-	created on 2020-08-27 by peter@forret.com
+Example: 
+* given the average rainfall in December in 20 cities for the last 5 years (e.g.86 mm for Brussels, ...)
+* when I have the rainfall this year for 15 of those cities, 
+* estimate the other 5 cities
 
 ## Installation
 
