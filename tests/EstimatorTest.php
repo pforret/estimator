@@ -102,21 +102,22 @@ class EstimatorTest extends TestCase
         $this->assertEquals(39, $estimated["D"], "estimate_from_total - precision 3");
     }
 
-    public function test_salaries(){
+    public function test_salaries()
+    {
         $est = new Estimator();
-        $references=[
-            "John"  =>  100,
-            "Kevin" =>  120,
-            "Sarah" =>  100,
-            "Vince"  =>  100,
+        $references = [
+            "John" => 100,
+            "Kevin" => 120,
+            "Sarah" => 100,
+            "Vince" => 100,
         ];
         $est->set_references($references);
-        $partials=[
-            "John"  => 120,
+        $partials = [
+            "John" => 120,
             "Kevin" => 150,
-            "Vince" =>  175,
+            "Vince" => 175,
             ];
-        $estimation=$est->estimate_from_partials($partials);
+        $estimation = $est->estimate_from_partials($partials);
         print_r($est->evaluate_partials($partials));
         print_r($estimation);
         $this->assertEquals(139, $estimation["Sarah"], "test_salaries");
