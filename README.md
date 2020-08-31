@@ -1,4 +1,4 @@
-# This is my package Estimator
+# Historical Estimator / Extrapolator
 
 Github: 
 ![GitHub tag](https://img.shields.io/github/v/tag/pforret/estimator)
@@ -30,7 +30,7 @@ composer require pforret/estimator
 ``` php
 use Pforret\Estimator\Estimator;
 $est = new Estimator();
-$est->set_averages($averages);
+$est->set_references($references);
 
 // and then
 
@@ -41,6 +41,58 @@ $estimated = $est->estimate_from_partials($partials);
 $estimated = $est->estimate_from_total(100);
 ```
 
+    $evaluation = $est->evaluate_partials($partials);
+
+    // references = values set with set_references
+    [references_count] => 4
+    [references_maximum] => 25
+    [references_mean] => 25
+    [references_median] => 25
+    [references_minimum] => 25
+    [references_sum] => 100
+    // partials = values specified with estimate_from_partials
+    [partials_maximum] => 28
+    [partials_mean] => 26
+    [partials_median] => 25
+    [partials_minimum] => 25
+    [partials_multiplier] => 1.04
+    [partials_sum] => 78
+    // found = subset of references, matching with partials keys
+    [found_count] => 3
+    [found_count_fraction] => 0.75
+    [found_mean] => 25
+    [found_sum] => 75
+    [found_sum_fraction] => 0.75
+    // stat = statistic evaulation of estimate/extrapolation
+    [stat_confidence] => 74.913
+    [stat_deviation] => 3
+
+## Example
+
+    $references=[
+        "John"  =>  100,
+        "Kevin" =>  120,
+        "Sarah" =>  100,
+        "Vince" =>  100,
+        ];
+    $est = new Estimator();
+    $est->set_references($references);
+    $partials=[
+        "John"  => 120,
+        "Kevin" => 150,
+        // "Sarah" is to be estimated
+        "Vince" =>  175,
+        ];
+    $estimation=$est->estimate_from_partials();
+    /*
+        [John] => 120
+        [Kevin] => 150
+        [Vince] => 175
+        [Sarah] => 139 <<< estimation
+    */
+    
+    
+    
 ## Testing
 
 ``` bash
