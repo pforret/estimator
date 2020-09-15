@@ -67,8 +67,13 @@ class Estimator
         return $results;
     }
 
-    public function estimate_from_partials(array $partials, int $precision = 1): array
+    public function estimate_from_partials(array $partials, int $precision = 1, bool $with_originals = true): array
     {
+        if($with_originals){
+            $response=$partials;
+        } else {
+            $response=[];
+        }
         $evaluation = $this->evaluate_partials($partials);
         $references_found_sum = $evaluation["found_sum"];
         $partials_sum = $evaluation["partials_sum"];
@@ -76,14 +81,13 @@ class Estimator
         foreach ($this->references as $label => $average) {
             if (! in_array($label, $given)) {
                 if ($precision > 1) {
-                    $partials[$label] = round($average / $references_found_sum * $partials_sum / $precision) * $precision;
+                    $response[$label] = round($average / $references_found_sum * $partials_sum / $precision) * $precision;
                 } else {
-                    $partials[$label] = round($average / $references_found_sum * $partials_sum);
+                    $response[$label] = round($average / $references_found_sum * $partials_sum);
                 }
             }
         }
-
-        return $partials;
+        return $response;
     }
 
     public function estimate_from_total(int $total, int $precision = 1): array
