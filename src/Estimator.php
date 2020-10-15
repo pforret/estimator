@@ -2,6 +2,8 @@
 
 namespace Pforret\Estimator;
 
+use Exception;
+
 class Estimator
 {
     private $references = [];
@@ -10,6 +12,9 @@ class Estimator
 
     public function set_references(array $references)
     {
+        if(!$references){
+            throw new Exception('References cannot be set to empty array');
+        }
         $this->references = $references;
         $this->labels = array_keys($this->references);
         $values = array_values($this->references);
@@ -23,6 +28,12 @@ class Estimator
 
     public function evaluate_partials(array $partials, bool $with_stats = true): array
     {
+        if(!$this->references){
+            throw new Exception('References not set, use `set_references` before using `evaluate_partials`');
+        }
+        if($this->metadata["references_count"] === 0){
+            throw new Exception('References not set, use `set_references` before using `evaluate_partials`');
+        }
         $references_found_sum = 0;
         $partials_sum = 0;
         $found_count = 0;
@@ -33,6 +44,9 @@ class Estimator
                 $partials_sum += $value;
                 $found_count++;
             }
+        }
+        if(!$found_count){
+            throw new Exception('No overlap between references and partials - cannot extrapolate from this data');
         }
         $results["found_count"] = $found_count;
         $results["found_count_fraction"] = round($found_count / $this->metadata["references_count"], 3);
@@ -63,7 +77,6 @@ class Estimator
             $results["stat_trustable"] = round((100 - ($results["stat_deviation"] / max($results["partials_mean"], $this->metadata["references_mean"]))) * ($results["found_sum"] / $this->metadata["references_sum"]), 3);
         }
         ksort($results);
-        //print_r($results);
         return $results;
     }
 

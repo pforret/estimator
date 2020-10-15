@@ -32,7 +32,6 @@ class EstimatorTest extends TestCase
 
         $partials["C"] = 28;
         $evaluation = $est->evaluate_partials($partials, true);
-        print_r($evaluation);
         $this->assertEquals(3, $evaluation["stat_variance"], "variance");
         $this->assertEquals(1.732, $evaluation["stat_deviation"], "deviation");
     }
@@ -118,8 +117,26 @@ class EstimatorTest extends TestCase
             "Vince" => 175,
             ];
         $estimation = $est->estimate_from_partials($partials);
-        print_r($est->evaluate_partials($partials));
-        print_r($estimation);
         $this->assertEquals(139, $estimation["Sarah"], "test_salaries");
+    }
+
+    public function test_exceptions(){
+        $est = new Estimator();
+        $this->expectExceptionMessage("empty array");
+        $est->set_references([]);
+
+        $references = [
+            "John" => 100,
+            "Kevin" => 120,
+            "Sarah" => 100,
+            "Vince" => 100,
+        ];
+        $est->set_references($references);
+        $partials = [
+            "Walter" => 1,
+        ];
+        $this->expectExceptionMessage("cannot extrapolate from this data");
+        $estimation = $est->estimate_from_partials($partials);
+
     }
 }
