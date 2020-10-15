@@ -82,10 +82,10 @@ class Estimator
 
     public function estimate_from_partials(array $partials, int $precision = 1, bool $with_originals = true): array
     {
-        if($with_originals){
-            $response=$partials;
+        if ($with_originals) {
+            $response = $partials;
         } else {
-            $response=[];
+            $response = [];
         }
         $evaluation = $this->evaluate_partials($partials);
         $references_found_sum = $evaluation["found_sum"];
@@ -100,6 +100,7 @@ class Estimator
                 }
             }
         }
+
         return $response;
     }
 
