@@ -12,7 +12,7 @@ class Estimator
 
     public function set_references(array $references)
     {
-        if(!$references){
+        if (! $references) {
             throw new Exception('References cannot be set to empty array');
         }
         $this->references = $references;
@@ -28,10 +28,10 @@ class Estimator
 
     public function evaluate_partials(array $partials, bool $with_stats = true): array
     {
-        if(!$this->references){
+        if (! $this->references) {
             throw new Exception('References not set, use `set_references` before using `evaluate_partials`');
         }
-        if($this->metadata["references_count"] === 0){
+        if ($this->metadata["references_count"] === 0) {
             throw new Exception('References not set, use `set_references` before using `evaluate_partials`');
         }
         $references_found_sum = 0;
@@ -45,7 +45,7 @@ class Estimator
                 $found_count++;
             }
         }
-        if(!$found_count){
+        if (! $found_count) {
             throw new Exception('No overlap between references and partials - cannot extrapolate from this data');
         }
         $results["found_count"] = $found_count;
@@ -77,6 +77,7 @@ class Estimator
             $results["stat_trustable"] = round((100 - ($results["stat_deviation"] / max($results["partials_mean"], $this->metadata["references_mean"]))) * ($results["found_sum"] / $this->metadata["references_sum"]), 3);
         }
         ksort($results);
+
         return $results;
     }
 

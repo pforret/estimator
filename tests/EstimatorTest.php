@@ -120,7 +120,8 @@ class EstimatorTest extends TestCase
         $this->assertEquals(139, $estimation["Sarah"], "test_salaries");
     }
 
-    public function test_exceptions(){
+    public function test_exceptions()
+    {
         $est = new Estimator();
         $this->expectExceptionMessage("empty array");
         $est->set_references([]);
@@ -137,6 +138,5 @@ class EstimatorTest extends TestCase
         ];
         $this->expectExceptionMessage("cannot extrapolate from this data");
         $estimation = $est->estimate_from_partials($partials);
-
     }
 }
