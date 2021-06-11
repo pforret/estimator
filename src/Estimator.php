@@ -71,7 +71,11 @@ class Estimator
                     $deviation += $difference * $difference;
                 }
             }
-            $results["stat_variance"] = $deviation / ($found_count - 1);
+            if($found_count > 1){
+                $results["stat_variance"] = $deviation / ($found_count - 1);
+            } else {
+                $results["stat_variance"] = 9999;
+            }
             $results["stat_deviation"] = round(sqrt($results["stat_variance"]), 3); // square root
             // TODO: statistical correct calculation of confidence
             $results["stat_trustable"] = round((100 - ($results["stat_deviation"] / max($results["partials_mean"], $this->metadata["references_mean"]))) * ($results["found_sum"] / $this->metadata["references_sum"]), 3);
