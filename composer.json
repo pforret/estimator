@@ -1,6 +1,6 @@
 {
     "name": "pforret/estimator",
-    "version": "1.5.2",
+    "version": "1.5.3",
     "description": "PHP package to help with statistic estimation (extrapolation) based on historic reference data",
     "keywords": [
         "pforret",
