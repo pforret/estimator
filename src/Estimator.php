@@ -46,7 +46,8 @@ class Estimator
             }
         }
         if (! $found_count) {
-            throw new Exception('No overlap between references and partials - cannot extrapolate from this data');
+            $error_message=sprintf("No overlap between\n partials (%s) and\n references (%s):\n cannot extrapolate data",$this->array_keys_to_string($partials), $this->array_keys_to_string($this->references));
+            throw new Exception($error_message);
         }
         $results["found_count"] = $found_count;
         $results["found_count_fraction"] = round($found_count / $this->metadata["references_count"], 3);
@@ -135,5 +136,12 @@ class Estimator
             // odd number of values --  5 values (index 0 - 5), take [2]
             return $values[($nb - 1) / 2];
         }
+    }
+
+    private function array_keys_to_string(array $array): string
+    {
+        $keys=array_keys($array);
+        sort($keys);
+        return implode(", ",$keys);
     }
 }
