@@ -10,7 +10,7 @@ class Estimator
     private $labels = [];
     private $metadata = [];
 
-    public function set_references(array $references)
+    public function set_references(array $references): void
     {
         if (! $references) {
             throw new Exception('References cannot be set to empty array');
@@ -46,7 +46,8 @@ class Estimator
             }
         }
         if (! $found_count) {
-            $error_message=sprintf("No overlap between\n partials (%s) and\n references (%s):\n cannot extrapolate data",$this->array_keys_to_string($partials), $this->array_keys_to_string($this->references));
+            $error_message = sprintf("No overlap between\n partials (%s) and\n references (%s):\n cannot extrapolate data", $this->array_keys_to_string($partials), $this->array_keys_to_string($this->references));
+
             throw new Exception($error_message);
         }
         $results["found_count"] = $found_count;
@@ -72,7 +73,7 @@ class Estimator
                     $deviation += $difference * $difference;
                 }
             }
-            if($found_count > 1){
+            if ($found_count > 1) {
                 $results["stat_variance"] = $deviation / ($found_count - 1);
             } else {
                 $results["stat_variance"] = 9999;
@@ -140,8 +141,9 @@ class Estimator
 
     private function array_keys_to_string(array $array): string
     {
-        $keys=array_keys($array);
+        $keys = array_keys($array);
         sort($keys);
-        return implode(", ",$keys);
+
+        return implode(", ", $keys);
     }
 }

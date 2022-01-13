@@ -21,9 +21,9 @@
         "php": "^7.4 | ^8.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
+        "friendsofphp/php-cs-fixer": "^3.0",
         "phpunit/phpunit": "^9.0",
-        "vimeo/psalm": "^3.11"
+        "vimeo/psalm": "^4.18"
     },
     "autoload": {
         "psr-4": {
